@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "scripts/user_config.sh", privileged: false
 
   config.vm.provision "shell" do |x|
-    x.inline = "kubectl apply -f kubeadm-kuberouter-all-features.yaml"
-    x.inline = "echo $(id -u)"
+    x.inline = "kubectl apply -f /home/vagrant/kubeadm-kuberouter-all-features.yaml"
+    x.inline = "kubectl delete daemonset -n kube-system kube-proxy"
   end
 end
